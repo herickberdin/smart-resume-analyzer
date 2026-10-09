@@ -103,7 +103,8 @@ smart-resume-analyzer/
     ├── parser.py          # Resume parsing
     ├── analyzer.py        # NLP analysis
     ├── scorer.py          # ATS scoring
-    └── job_roles.py       # Role keywords
+    ├── job_roles.py       # Role keywords
+    └── report_generator.py # PDF report generation
 ```
 
 ---

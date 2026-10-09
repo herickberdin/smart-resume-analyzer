@@ -49,11 +49,12 @@ smart-resume-analyzer/
 ├── requirements.txt
 ├── README.md
 └── utils/
-├── init.py
-├── parser.py           # PDF & DOCX text extraction
-├── analyzer.py         # NLP analysis engine
-├── scorer.py           # ATS scoring logic
-└── job_roles.py        # Keyword database (10 roles)
+    ├── __init__.py
+    ├── parser.py           # PDF & DOCX text extraction
+    ├── analyzer.py         # NLP analysis engine
+    ├── scorer.py           # ATS scoring logic
+    ├── job_roles.py        # Keyword database (10 roles)
+    └── report_generator.py # PDF report generation
 
 ---
 

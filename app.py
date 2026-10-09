@@ -4,6 +4,8 @@ from utils.parser import extract_text
 from utils.analyzer import analyze_resume
 from utils.scorer import compute_score
 from utils.job_roles import JOB_ROLES
+from utils.report_generator import generate_ats_report_pdf
+
 
 # ── Page config ──────────────────────────────────────────────────────────────
 st.set_page_config(
@@ -375,6 +377,28 @@ if uploaded_file:
     # ── Extracted Text Preview ───────────────────────────────────────────────
     with st.expander("🔎 View Extracted Resume Text"):
         st.text_area("Raw Text", resume_text, height=300)
+
+    # ── Export Report ────────────────────────────────────────────────────────
+    st.markdown("---")
+    export_col1, export_col2 = st.columns([2, 1])
+    with export_col1:
+        st.markdown("### 📥 Export ATS Analysis Report")
+        st.caption("Download a comprehensive PDF report containing your ATS score, breakdown, keyword matches, missing gaps, and actionable improvement tips.")
+    with export_col2:
+        pdf_report_bytes = generate_ats_report_pdf(
+            analysis=analysis,
+            score_data=score_data,
+            job_role=job_role,
+            resume_filename=uploaded_file.name
+        )
+        safe_role_name = job_role.replace(" ", "_").replace("(", "").replace(")", "").lower()
+        st.download_button(
+            label="📄 Download PDF Report",
+            data=pdf_report_bytes,
+            file_name=f"ATS_Report_{safe_role_name}.pdf",
+            mime="application/pdf",
+            use_container_width=True
+        )
 
 else:
     # Empty state
